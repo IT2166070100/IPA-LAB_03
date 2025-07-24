@@ -26,7 +26,16 @@ for ip in device_ip:
         print("\t\t\t=> Enter global configuration mode")
 
         ssh.send("sho run\n")
-        time.sleep(1)
+        time.sleep(2)
         print("\t\t\t=> Show running-config run successfully \n")
 
-print("Script running Successfully!?\n")
+        if ip == "172.31.17.1":
+            # Receive the output from the 'show run' command
+            output = ssh.recv(65535).decode("utf-8")
+
+            # Create and write the output to the specified file
+            with open("R0_running_configuration", "w") as file:
+                file.write(output)
+            print(f"\t\t\t=> Running configuration for {ip} saved to R0_running_configuration")
+
+print("Script running Successfully !!!\n")
