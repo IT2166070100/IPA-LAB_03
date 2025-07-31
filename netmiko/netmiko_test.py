@@ -47,6 +47,7 @@ CONFIGURE_OSPF_R2 = ['int g0/1',
                      'no sh',                                    
                      'ip address 192.168.17.9 255.255.255.252',                              
                      'int g0/3',
+                     'vrf forwarding control-data',
                      'no sh',
                      'ip address dhcp',
                      'int lo0',
@@ -55,7 +56,7 @@ CONFIGURE_OSPF_R2 = ['int g0/1',
                      'exit',
                      'router ospf 10 vrf control-data',
                      'network 192.168.17.4 0.0.0.3 area 0',
-
+                     'network 192.168.17.8 0.0.0.3 area 0',
                      'network 2.2.2.2 0.0.0.0 area 0',
                      'default-information originate always'
                      ]
@@ -69,7 +70,12 @@ CONFIGURE_PAT_R2 = ['int g0/3',
                      'exit',
                      'access-list 1 permit 192.168.17.0 0.0.0.3',
                      'access-list 1 permit 192.168.17.8 0.0.0.3',
-                     'ip nat inside source list 1 interface g0/3 vrf control-data overload'
+                     'ip nat inside source list 1 interface g0/3 vrf control-data overload',
+                     'access-list 101 deny tcp host 192.168.17.10 192.168.17.0 0.0.0.255 eq telnet',
+                     'access-list 101 deny tcp host 192.168.17.10 192.168.17.0 0.0.0.255 eq 22',
+                     'access-list 101 permit ip any any',
+                     'int g0/2',
+                     'ip access-group 101 in'
                      ]
 
 for ip in devices_ip:

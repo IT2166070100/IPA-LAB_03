@@ -1,0 +1,23 @@
+--- Network Device Configuration Backup --- 
+--- Timestamp: 2025-07-31 12:09:23 ---
+
+
+!!!!!!!!!!!!!!!!!!!! [ FAILED to retrieve config from R0 (172.31.17.1) ] !!!!!!!!!!!!!!!!!!!!
+Error: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 15 seconds or larger.
+
+
+!!!!!!!!!!!!!!!!!!!! [ FAILED to retrieve config from S0 (172.31.17.2) ] !!!!!!!!!!!!!!!!!!!!
+Error: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 15 seconds or larger.
+
+
+!!!!!!!!!!!!!!!!!!!! [ FAILED to retrieve config from S1 (172.31.17.3) ] !!!!!!!!!!!!!!!!!!!!
+Error: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 15 seconds or larger.
+
+
+!!!!!!!!!!!!!!!!!!!! [ FAILED to retrieve config from R1 (172.31.17.4) ] !!!!!!!!!!!!!!!!!!!!
+Error: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 15 seconds or larger.
+
+
+!!!!!!!!!!!!!!!!!!!! [ FAILED to retrieve config from R2 (172.31.17.5) ] !!!!!!!!!!!!!!!!!!!!
+Error: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 15 seconds or larger.
+
