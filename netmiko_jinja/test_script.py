@@ -1,35 +1,33 @@
+""" This i s python script to refactor the netmiko.py and configure the network devices"""
 from jinja2 import Environment, FileSystemLoader
 from netmiko import ConnectHandler
 import yaml
 import logging
+
+# --- Setting up the configuretion ---
 logging.basicConfig(filename='ssh_log', level=logging.DEBUG)
-
-# --- Setup for configuration ---
-
 env = Environment(loader=FileSystemLoader('templates'),
                   trim_blocks=True,
                   lstrip_blocks=True)
 
 def generate_config_from_files(template_file, data_file):
-    """A helper function to render a template and return a clean list of commands."""
     template = env.get_template(template_file)
     with open(data_file) as f:
         data_vars = yaml.safe_load(f)
     config_string = template.render(data_vars)
     return [line.lstrip() for line in config_string.splitlines() if line.strip()]
 
-print("--- Generating VLAN configuration... ---")
+print("--- Generating configurations... ---")
 vlan_config_commands = generate_config_from_files('vlan101.txt', 'data_files/vlan_info.yml')
-print("VLAN commands generated successfully.")
-
-print("--- Generating OSPF R1 configuration... ---")
 ospf_r1_config_commands = generate_config_from_files('ospf_r1.txt', 'data_files/ospf_r1_info.yml')
-print("OSPF R1 commands generated successfully.")
+ospf_r2_config_commands = generate_config_from_files('ospf_r2.txt', 'data_files/ospf_r2_info.yml')
+pat_r2_config_commands = generate_config_from_files('pat_r2.txt', 'data_files/pat_r2_info.yml')
+print("All configurations generated.")
 
 
 # --- Connect and Configure ---
 
-devices_ip = ['172.31.17.3', '172.31.17.4']
+devices_ip = ['172.31.17.3', '172.31.17.4', '172.31.17.5']
 username = 'LINUX'
 secret = 'cisco'
 
@@ -53,18 +51,33 @@ for ip in devices_ip:
         with ConnectHandler(**current_device_params) as ssh:
             print(f"    Successfully connected to {ip}")
             ssh.enable()
+            result = ""
 
             if ip == "172.31.17.3":
                 print(f"    Sending VLAN configuration to {ip}...")
-                result = ssh.send_config_set(vlan_config_commands) 
+                result = ssh.send_config_set(vlan_config_commands)
             
             elif ip == "172.31.17.4":
                 print(f"    Sending OSPF R1 configuration to {ip}...")
                 result = ssh.send_config_set(ospf_r1_config_commands)
-            
+
+            elif ip == "172.31.17.5":
+                # --- THIS IS THE MODIFIED LOGIC FOR R2 ---
+                print(f"    Sending OSPF R2 configuration to {ip}...")
+                result = ssh.send_config_set(ospf_r2_config_commands)
+                
+                print(f"    Sending PAT R2 configuration to {ip}...")
+                pat_result = ssh.send_config_set(pat_r2_config_commands)
+                result += "\n" + pat_result # Append the results for the final printout
+
+                print(f"    Applying special DHCP command to g0/3 on {ip}...")
+                dhcp_commands = ['interface g0/3', 'ip address dhcp']
+                dhcp_result = ssh.send_config_set(dhcp_commands)
+                result += "\n" + dhcp_result
+
             else:
                 print(f"    No specific configuration found for {ip}. Skipping.")
-                continue 
+                continue
 
             print(f"\n--- Device Output from {ip} ---")
             print(result)

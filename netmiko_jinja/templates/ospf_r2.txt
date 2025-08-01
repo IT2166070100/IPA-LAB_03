@@ -1,14 +1,20 @@
 {% for interface in interfaces %}
 interface {{ interface.name }}
-no shutdown
-ip address {{ interface.ip }} {% if interface.subnet}{{ interface.subnet }{% endif %}}
+{% if interface.vrf %}
+  vrf forwarding {{ interface.vrf }}
+{% endif %}
+  no shutdown
+{% if interface.ip %}
+  ip address {{ interface.ip }} {{ interface.subnet }}
+{% endif %}
 exit
 {% endfor %}
 
 {% if ospf %}
 router ospf {{ ospf.id }} vrf {{ ospf.vrf }}
 {% for net in ospf.networks %}
-network {{ net.address }} area {{ net.area }}
+  network {{ net.address }} area {{ net.area }}
 {% endfor %}
+  default-information originate always
+exit
 {% endif %}
-default-information originate always

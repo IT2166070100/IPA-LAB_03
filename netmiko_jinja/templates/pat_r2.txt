@@ -1,0 +1,25 @@
+{% for intf in nat_interfaces %}
+interface range {{ intf.name }}
+  ip nat {{ intf.nat_type }}
+exit
+{% endfor %}
+
+{% for acl in access_lists %}
+{% for entry in acl.entries %}
+{% for key, value in entry.items() %}
+access-list {{ acl.name }} {{ key }} {{ value }}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
+{% for rule in nat_rules %}
+ip nat inside source list {{ rule.list_number }} interface {{ rule.interface }} vrf {{ rule.vrf }} overload
+{% endfor %}
+
+{% for acl in access_lists %}
+{% if acl.interface_apply is defined %}
+interface {{ acl.interface_apply }}
+  ip access-group {{ acl.name }} {{ acl.direction }}
+exit
+{% endif %}
+{% endfor %}

@@ -1,0 +1,26 @@
+nat_interfaces:
+  - name: g0/3
+    nat_type: outside
+  - name: g0/1-2
+    nat_type: inside
+
+nat_rules:
+  - type: inside_source_list_interface_overload
+    list_number: 1
+    interface: g0/3
+    vrf: control-data
+
+access_lists:
+  - name: 1
+    type: standard
+    entries:
+      - permit: "192.168.17.0 0.0.0.3"
+      - permit: "192.168.17.8 0.0.0.3"
+  - name: 101
+    type: extended
+    interface_apply: g0/2
+    direction: in
+    entries:
+      - deny: "tcp host 192.168.17.10 192.168.17.0 0.0.0.255 eq telnet"
+      - deny: "tcp host 192.168.17.10 192.168.17.0 0.0.0.255 eq 22"
+      - permit: "ip any any"
