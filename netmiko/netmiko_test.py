@@ -21,7 +21,8 @@ CONFIGURE_VLAN_101 = ['vlan 101',
                       'exit',
                       'int range g0/1, g1/1',
                       'switchport mode access',
-                      'switchport access vlan 101'
+                      'switchport access vlan 101',
+                      'no sh'
                      ]
 
 #Configure OSPF on R1 on control/data plane (172.31.17.4) all interface in control/data, loopback in area 0
