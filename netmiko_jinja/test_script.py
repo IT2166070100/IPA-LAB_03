@@ -1,62 +1,76 @@
 from jinja2 import Environment, FileSystemLoader
 from netmiko import ConnectHandler
 import yaml
+import logging
+logging.basicConfig(filename='ssh_log', level=logging.DEBUG)
 
-# --- Part 1: Jinja2 Configuration Generation ---
+# --- Setup for configuration ---
 
-# Set up the Jinja2 environment to find templates in the 'templates' folder
-env = Environment(loader=FileSystemLoader('templates'), 
-                    trim_blocks=True, 
-                    lstrip_blocks=True)
-template = env.get_template('vlan101.txt')
+env = Environment(loader=FileSystemLoader('templates'),
+                  trim_blocks=True,
+                  lstrip_blocks=True)
 
-# Load the data from the YAML file
-with open('data_files/vlan_info.yml') as f:
-    vlan_info = yaml.safe_load(f)
+def generate_config_from_files(template_file, data_file):
+    """A helper function to render a template and return a clean list of commands."""
+    template = env.get_template(template_file)
+    with open(data_file) as f:
+        data_vars = yaml.safe_load(f)
+    config_string = template.render(data_vars)
+    return [line.lstrip() for line in config_string.splitlines() if line.strip()]
 
-# Render the template with the data to create the configuration commands
-# The output is a single string with newlines
-config_output_string = template.render(vlan_info)
+print("--- Generating VLAN configuration... ---")
+vlan_config_commands = generate_config_from_files('vlan101.txt', 'data_files/vlan_info.yml')
+print("VLAN commands generated successfully.")
 
-# Split the configuration string into a list of commands
-# Netmiko's send_config_set expects a list
-config_commands_list = [line.lstrip() for line in config_output_string.splitlines()]
-
-# (Optional) Print the generated commands to verify them before sending
-print("--- Generated Configuration ---")
-print(config_output_string)
-print("-----------------------------")
+print("--- Generating OSPF R1 configuration... ---")
+ospf_r1_config_commands = generate_config_from_files('ospf_r1.txt', 'data_files/ospf_r1_info.yml')
+print("OSPF R1 commands generated successfully.")
 
 
-# --- Part 2: Netmiko Device Connection and Configuration ---
+# --- Connect and Configure ---
 
-# Device connection details - NOTE: ip is now a string
-device_ip = '172.31.17.3' 
+devices_ip = ['172.31.17.3', '172.31.17.4']
 username = 'LINUX'
 secret = 'cisco'
 
-device_params = {
+base_device_params = {
     'device_type': 'cisco_ios',
-    'ip': device_ip,
     'username': username,
-    'secret': secret,      
-    "use_keys": True,     
-    "key_file": "/home/devasc/.ssh/id_rsa", 
+    'secret': secret,
+    "use_keys": True,
+    "key_file": "/home/devasc/.ssh/id_rsa",
     'disabled_algorithms': dict(pubkeys=['rsa-sha2-512', 'rsa-sha2-256']),
-     "allow_agent": False
+    "allow_agent": False
 }
 
+for ip in devices_ip:
+    print(f"\n>>> Connecting to device: {ip}")
+    
+    current_device_params = base_device_params.copy()
+    current_device_params['ip'] = ip
 
-try:
-    print(f"Connecting to {device_ip}...")
-    with ConnectHandler(**device_params) as ssh:
-        print(f"Successfully connected to {device_ip}")
-        ssh.enable()
-        print("Sending configuration...")
-        result = ssh.send_config_set(config_commands_list)
-        print("\n--- Device Output ---")
-        print(result)
-        print("---------------------\n")
+    try:
+        with ConnectHandler(**current_device_params) as ssh:
+            print(f"    Successfully connected to {ip}")
+            ssh.enable()
 
-except Exception as e:
-    print(f"\nAn error occurred: \n{e}")
+            if ip == "172.31.17.3":
+                print(f"    Sending VLAN configuration to {ip}...")
+                result = ssh.send_config_set(vlan_config_commands) 
+            
+            elif ip == "172.31.17.4":
+                print(f"    Sending OSPF R1 configuration to {ip}...")
+                result = ssh.send_config_set(ospf_r1_config_commands)
+            
+            else:
+                print(f"    No specific configuration found for {ip}. Skipping.")
+                continue 
+
+            print(f"\n--- Device Output from {ip} ---")
+            print(result)
+            print("----------------------------------\n")
+
+    except Exception as e:
+        print(f"!!! An error occurred while connecting or configuring {ip}: \n{e}")
+
+print(">>> Script finished.")

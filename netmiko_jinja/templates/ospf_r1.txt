@@ -1,0 +1,13 @@
+{% for interface in interfaces %}
+interface {{ interface.name }}
+no shutdown
+ip address {{ interface.ip }} {{ interface.subnet }}
+exit
+{% endfor %}
+
+{% if ospf %}
+router ospf {{ ospf.id }} vrf {{ ospf.vrf }}
+{% for net in ospf.networks %}
+network {{ net.address }} area {{ net.area }}
+{% endfor %}
+{% endif %}
