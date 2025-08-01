@@ -1,0 +1,13 @@
+vlan 101
+name control-data
+exit
+    interface g0/1
+    switchport mode access
+    switchport access vlan 101
+    no shutdown
+    exit
+    interface g1/1
+    switchport mode access
+    switchport access vlan 101
+    no shutdown
+    exit
