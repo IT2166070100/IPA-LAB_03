@@ -1,0 +1,836 @@
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R1>
+R1>
+DEBUG:netmiko:read_channel: t
+DEBUG:netmiko:read_channel: ermin
+DEBUG:netmiko:read_channel: al wi
+DEBUG:netmiko:read_channel: dth 
+DEBUG:netmiko:read_channel: 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R1>
+R1>terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1>ter
+DEBUG:netmiko:read_channel: min
+DEBUG:netmiko:read_channel: al l
+DEBUG:netmiko:read_channel: engt
+DEBUG:netmiko:read_channel: h 0
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R1>terminal length 0
+DEBUG:netmiko:
+R1>terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: R1>
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1>
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R1>
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1>
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1>
+DEBUG:netmiko:Pattern found: (R1.*) 
+R1>
+DEBUG:netmiko:write_channel: b'enable\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: en
+DEBUG:netmiko:read_channel: able
+
+DEBUG:netmiko:Pattern found: (enable) enable
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Password: 
+DEBUG:netmiko:Pattern found: ((?:R1|ssword)) 
+Password
+DEBUG:netmiko:write_channel: b'********\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: (R1) : 
+R1
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: (R1.*) #
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:write_channel: b'show cdp neighbor\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show
+DEBUG:netmiko:read_channel:  cdp n
+DEBUG:netmiko:read_channel: eigh
+DEBUG:netmiko:read_channel: bor
+DEBUG:netmiko:Pattern found: (show\ cdp\ neighbor) show cdp neighbor
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+R2.ipa.com       Gig 0/2           178              R B             Gig 0/1
+S0.ipa.com       Gig 0/0           164              S I             Gig 0/1
+
+Total cdp entries displayed : 2
+R1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: c
+DEBUG:netmiko:read_channel: onfig
+DEBUG:netmiko:read_channel: ure
+DEBUG:netmiko:read_channel:  term
+DEBUG:netmiko:read_channel: inal
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#
+DEBUG:netmiko:Pattern found: (R1.*) 
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: in
+DEBUG:netmiko:read_channel: terf
+DEBUG:netmiko:read_channel: ace Gi
+DEBUG:netmiko:read_channel: gabitE
+DEBUG:netmiko:read_channel: therne
+DEBUG:netmiko:read_channel: t0/1
+
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/1) interface GigabitEthernet0/1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to PC\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: scr
+DEBUG:netmiko:read_channel: ipti
+DEBUG:netmiko:read_channel: on Conn
+DEBUG:netmiko:read_channel: ect 
+DEBUG:netmiko:read_channel: to PC
+
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ PC) description Connect to PC
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/2\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: i
+DEBUG:netmiko:read_channel: nterf
+DEBUG:netmiko:read_channel: ace G
+DEBUG:netmiko:read_channel: igabit
+DEBUG:netmiko:read_channel: Ethern
+DEBUG:netmiko:read_channel: et0/2
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/2) interface GigabitEthernet0/2
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to Gig 0/1 of R2\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: script
+DEBUG:netmiko:read_channel: ion Co
+DEBUG:netmiko:read_channel: nnect 
+DEBUG:netmiko:read_channel: to Gig
+DEBUG:netmiko:read_channel:  0/1 o
+DEBUG:netmiko:read_channel: f R2
+
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ Gig\ 0/1\ of\ R2) description Connect to Gig 0/1 of R2
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'end\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: end
+DEBUG:netmiko:Pattern found: (end) end
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: (#.*) 
+R1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1#
+DEBUG:netmiko:exit_config_mode: end
+R1#
+DEBUG:netmiko:configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#interface GigabitEthernet0/1
+R1(config-if)#description Connect to PC
+R1(config-if)#interface GigabitEthernet0/2
+R1(config-if)#description Connect to Gig 0/1 of R2
+R1(config-if)#end
+R1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1#
+DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R2>
+R2>
+DEBUG:netmiko:read_channel: te
+DEBUG:netmiko:read_channel: rmina
+DEBUG:netmiko:read_channel: l wid
+DEBUG:netmiko:read_channel: th 511
+DEBUG:netmiko:Pattern found: (terminal width 511) C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R2>
+R2>terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2>t
+DEBUG:netmiko:read_channel: ermin
+DEBUG:netmiko:read_channel: al le
+DEBUG:netmiko:read_channel: ngth
+DEBUG:netmiko:read_channel:  0
+R2>
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R2>terminal length 0
+DEBUG:netmiko:
+R2>terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2>
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R2>
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R2>
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2>
+DEBUG:netmiko:Pattern found: (R2.*) 
+R2>
+DEBUG:netmiko:write_channel: b'enable\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ena
+DEBUG:netmiko:read_channel: ble
+Password: 
+DEBUG:netmiko:Pattern found: (enable) enable
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R2|ssword)) 
+Password
+DEBUG:netmiko:write_channel: b'********\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:Pattern found: (R2) : 
+R2
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:Pattern found: (R2.*) #
+R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R2#
+DEBUG:netmiko:write_channel: b'show cdp neighbor\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: sho
+DEBUG:netmiko:read_channel: w cd
+DEBUG:netmiko:read_channel: p ne
+DEBUG:netmiko:read_channel: ighb
+DEBUG:netmiko:read_channel: or
+
+DEBUG:netmiko:Pattern found: (show\ cdp\ neighbor) show cdp neighbor
+DEBUG:netmiko:read_channel: Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+S0.ipa.com       Gig 0/0           148              S I             Gig 0/2
+R1.ipa.com       Gig 0/1           164              R B             Gig 0/2
+S1.ipa.com       Gig 0/2           155              S I             Gig 0/1
+
+Total cdp entries displayed : 3
+R2#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R2#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: confi
+DEBUG:netmiko:read_channel: gure 
+DEBUG:netmiko:read_channel: term
+DEBUG:netmiko:read_channel: inal
+
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#
+DEBUG:netmiko:Pattern found: (R2.*) 
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2(config)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R2(config)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/3\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: int
+DEBUG:netmiko:read_channel: erfa
+DEBUG:netmiko:read_channel: ce G
+DEBUG:netmiko:read_channel: igabit
+DEBUG:netmiko:read_channel: Ether
+DEBUG:netmiko:read_channel: net0/3
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/3) interface GigabitEthernet0/3
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to WAN\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: scri
+DEBUG:netmiko:read_channel: ption
+DEBUG:netmiko:read_channel:  Co
+DEBUG:netmiko:read_channel: nnec
+DEBUG:netmiko:read_channel: t to WA
+DEBUG:netmiko:read_channel: N
+R2(config-if)#
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ WAN) description Connect to WAN
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: int
+DEBUG:netmiko:read_channel: erfac
+DEBUG:netmiko:read_channel: e Gig
+DEBUG:netmiko:read_channel: abitE
+DEBUG:netmiko:read_channel: thern
+DEBUG:netmiko:read_channel: et0/1
+
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/1) interface GigabitEthernet0/1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R2(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to Gig 0/2 of R1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: scri
+DEBUG:netmiko:read_channel: ptio
+DEBUG:netmiko:read_channel: n Con
+DEBUG:netmiko:read_channel: nect
+DEBUG:netmiko:read_channel:  to G
+DEBUG:netmiko:read_channel: ig 0/
+DEBUG:netmiko:read_channel: 2 of 
+DEBUG:netmiko:read_channel: R1
+R2(config-if)#
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ Gig\ 0/2\ of\ R1) description Connect to Gig 0/2 of R1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/2\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: interf
+DEBUG:netmiko:read_channel: ace 
+DEBUG:netmiko:read_channel: Gigabi
+DEBUG:netmiko:read_channel: tEth
+DEBUG:netmiko:read_channel: ernet0
+DEBUG:netmiko:read_channel: /2
+R2(config-if)#
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/2) interface GigabitEthernet0/2
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to Gig 0/1 of S1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: scrip
+DEBUG:netmiko:read_channel: ti
+DEBUG:netmiko:read_channel: on Con
+DEBUG:netmiko:read_channel: nect t
+DEBUG:netmiko:read_channel: o Gig
+DEBUG:netmiko:read_channel:  0/1
+DEBUG:netmiko:read_channel:  of S1
+
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ Gig\ 0/1\ of\ S1) description Connect to Gig 0/1 of S1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R2(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R2.*$|#.*$)) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R2(config-if)#
+DEBUG:netmiko:write_channel: b'end\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: e
+DEBUG:netmiko:read_channel: nd
+R2#
+DEBUG:netmiko:Pattern found: (end) end
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: (#.*) 
+R2#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R2#
+DEBUG:netmiko:exit_config_mode: end
+R2#
+DEBUG:netmiko:configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#interface GigabitEthernet0/3
+R2(config-if)#description Connect to WAN
+R2(config-if)#interface GigabitEthernet0/1
+R2(config-if)#description Connect to Gig 0/2 of R1
+R2(config-if)#interface GigabitEthernet0/2
+R2(config-if)#description Connect to Gig 0/1 of S1
+R2(config-if)#end
+R2#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: R2#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R2#
+DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************S1>
+S1>
+DEBUG:netmiko:read_channel: te
+DEBUG:netmiko:read_channel: rmi
+DEBUG:netmiko:read_channel: na
+DEBUG:netmiko:read_channel: l w
+DEBUG:netmiko:read_channel: id
+DEBUG:netmiko:read_channel: th
+DEBUG:netmiko:read_channel:  511
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************S1>
+S1>terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1>
+DEBUG:netmiko:read_channel: te
+DEBUG:netmiko:read_channel: rmi
+DEBUG:netmiko:read_channel: nal
+DEBUG:netmiko:read_channel:  le
+DEBUG:netmiko:read_channel: ngt
+DEBUG:netmiko:read_channel: h 0
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+S1>terminal length 0
+DEBUG:netmiko:
+S1>terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: S1>
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: S1>
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+S1>
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is S1>
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: S1>
+DEBUG:netmiko:Pattern found: (S1.*) 
+S1>
+DEBUG:netmiko:write_channel: b'enable\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: e
+DEBUG:netmiko:read_channel: na
+DEBUG:netmiko:read_channel: b
+DEBUG:netmiko:read_channel: le
+
+DEBUG:netmiko:Pattern found: (enable) enable
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Password: 
+DEBUG:netmiko:Pattern found: ((?:S1|ssword)) 
+Password
+DEBUG:netmiko:write_channel: b'********\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1#
+DEBUG:netmiko:Pattern found: (S1) : 
+S1
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1#
+DEBUG:netmiko:Pattern found: (S1.*) #
+S1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+S1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is S1#
+DEBUG:netmiko:write_channel: b'show cdp neighbor\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: s
+DEBUG:netmiko:read_channel: how
+DEBUG:netmiko:read_channel:  cd
+DEBUG:netmiko:read_channel: p n
+DEBUG:netmiko:read_channel: eighb
+DEBUG:netmiko:read_channel: or
+
+DEBUG:netmiko:Pattern found: (show\ cdp\ neighbor) show cdp neighbor
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+R2.ipa.com       Gig 0/1           123              R B             Gig 0/2
+S0.ipa.com       Gig 0/0           130              S I             Gig 0/3
+
+Total cdp entries displayed : 2
+S1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+S1#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: con
+DEBUG:netmiko:read_channel: figu
+DEBUG:netmiko:read_channel: re 
+DEBUG:netmiko:read_channel: te
+DEBUG:netmiko:read_channel: rm
+DEBUG:netmiko:read_channel: ina
+DEBUG:netmiko:read_channel: l
+
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#
+DEBUG:netmiko:Pattern found: (S1.*) 
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1(config)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+S1(config)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet1/1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: i
+DEBUG:netmiko:read_channel: nt
+DEBUG:netmiko:read_channel: erfa
+DEBUG:netmiko:read_channel: ce 
+DEBUG:netmiko:read_channel: Gig
+DEBUG:netmiko:read_channel: abi
+DEBUG:netmiko:read_channel: tEt
+DEBUG:netmiko:read_channel: he
+DEBUG:netmiko:read_channel: rne
+DEBUG:netmiko:read_channel: t1/
+DEBUG:netmiko:read_channel: 1
+S1(config-if)#
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet1/1) interface GigabitEthernet1/1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:S1.*$|#.*$)) 
+S1(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to PC\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: d
+DEBUG:netmiko:read_channel: escr
+DEBUG:netmiko:read_channel: ipt
+DEBUG:netmiko:read_channel: ion
+DEBUG:netmiko:read_channel:  Co
+DEBUG:netmiko:read_channel: nne
+DEBUG:netmiko:read_channel: ct t
+DEBUG:netmiko:read_channel: o
+DEBUG:netmiko:read_channel:  PC
+
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ PC) description Connect to PC
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: S1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:S1.*$|#.*$)) 
+S1(config-if)#
+DEBUG:netmiko:write_channel: b'interface GigabitEthernet0/1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: i
+DEBUG:netmiko:read_channel: nte
+DEBUG:netmiko:read_channel: rf
+DEBUG:netmiko:read_channel: ac
+DEBUG:netmiko:read_channel: e
+DEBUG:netmiko:read_channel:  G
+DEBUG:netmiko:read_channel: iga
+DEBUG:netmiko:read_channel: bi
+DEBUG:netmiko:read_channel: t
+DEBUG:netmiko:read_channel: Eth
+DEBUG:netmiko:read_channel: er
+DEBUG:netmiko:read_channel: net
+DEBUG:netmiko:read_channel: 0/1
+DEBUG:netmiko:Pattern found: (interface\ GigabitEthernet0/1) interface GigabitEthernet0/1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:S1.*$|#.*$)) 
+S1(config-if)#
+DEBUG:netmiko:write_channel: b'description Connect to Gig 0/2 of R2\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: de
+DEBUG:netmiko:read_channel: scr
+DEBUG:netmiko:read_channel: ipt
+DEBUG:netmiko:read_channel: ion
+DEBUG:netmiko:read_channel:  C
+DEBUG:netmiko:read_channel: onn
+DEBUG:netmiko:read_channel: ec
+DEBUG:netmiko:read_channel: t t
+DEBUG:netmiko:read_channel: o 
+DEBUG:netmiko:read_channel: Gi
+DEBUG:netmiko:read_channel: g 0
+DEBUG:netmiko:read_channel: /2
+DEBUG:netmiko:read_channel:  o
+DEBUG:netmiko:read_channel: f R
+DEBUG:netmiko:read_channel: 2
+DEBUG:netmiko:Pattern found: (description\ Connect\ to\ Gig\ 0/2\ of\ R2) description Connect to Gig 0/2 of R2
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: S1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:S1.*$|#.*$)) 
+S1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: S1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+S1(config-if)#
+DEBUG:netmiko:write_channel: b'end\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: e
+DEBUG:netmiko:read_channel: nd
+
+DEBUG:netmiko:Pattern found: (end) end
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: S1#
+DEBUG:netmiko:Pattern found: (#.*) 
+S1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+S1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+S1#
+DEBUG:netmiko:exit_config_mode: end
+S1#
+DEBUG:netmiko:configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#interface GigabitEthernet1/1
+S1(config-if)#description Connect to PC
+S1(config-if)#interface GigabitEthernet0/1
+S1(config-if)#description Connect to Gig 0/2 of R2
+S1(config-if)#end
+S1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: S1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+S1#
+DEBUG:netmiko:write_channel: b'exit\n'

@@ -2,7 +2,6 @@ import textfsm
 import os
 
 def expand_interface_name(short_name):
-    """Converts a short interface name (e.g., 'Gig 0/1') to a full one ('GigabitEthernet0/1')."""
     name_map = {
         'Gig': 'GigabitEthernet',
         'Fas': 'FastEthernet',
@@ -19,7 +18,7 @@ def expand_interface_name(short_name):
 
 
 def describe_config(cdp_output, special_connections={}):
-    """ Generates interface description configuration commands. """
+
     config_commands = []
 
     for interface, description in special_connections.items():
